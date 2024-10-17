@@ -2,9 +2,11 @@ install:
 	npm install
 
 lint:
-	npx stylelint ./src/styles/*.css
 	npx stylelint ./src/styles/**/*.scss
 	npx htmlhint ./src/*.html
 
-deploy:
-	npx surge ./src/
+start:
+    parcel ./src/index.html --out-dir dist
+
+build:
+    parcel build index.html --public-url ./

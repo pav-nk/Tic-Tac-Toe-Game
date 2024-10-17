@@ -1,20 +1,22 @@
 {
-  "name": "html5-css-boilerplate",
-  "version": "0.1.0",
-  "description": "HTML5/CSS Boilerplate with HTMLHint and StyleLint",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hexlet-boilerplates/html-boilerplate.git"
-  },
-  "main": "",
-  "devDependencies": {
-    "htmlhint": "^1.1.4",
-    "stylelint": "^15.2.0",
-    "stylelint-config-standard": "^30.0.1",
-    "stylelint-config-standard-scss": "^7.0.1",
-    "stylelint-scss": "^4.4.0",
-    "surge": "^0.23.1"
-  },
-  "author": "Nikita Mikhaylov",
-  "license": "ISC"
+    "name": "Tic-Tac-Toe-Game",
+    "version": "0.1.0",
+    "description": "The Odin Project: JavaScript Course",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pav-nk/Tic-Tac-Toe-Game"
+    },
+    "main": "",
+    "devDependencies": {
+        "htmlhint": "^1.1.4",
+        "parcel": "^2.12.0",
+        "sass": "^1.80.1",
+        "scss": "^0.2.4",
+        "stylelint": "^15.2.0",
+        "stylelint-config-standard": "^30.0.1",
+        "stylelint-config-standard-scss": "^7.0.1",
+        "stylelint-scss": "^4.4.0"
+    },
+    "author": "Pavel Nikonorov",
+    "license": "ISC"
 }
