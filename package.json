@@ -1,6 +1,7 @@
 {
     "name": "Tic-Tac-Toe-Game",
     "version": "0.1.0",
+    "type": "module",
     "description": "The Odin Project: JavaScript Course",
     "repository": {
         "type": "git",
@@ -18,5 +19,8 @@
         "stylelint-scss": "^4.4.0"
     },
     "author": "Pavel Nikonorov",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "readline-sync": "^1.4.10"
+    }
 }

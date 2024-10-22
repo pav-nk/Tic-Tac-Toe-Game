@@ -1,4 +1,4 @@
-"use sctrict";
+import readlineSync from "readline-sync";
 
 function Gameboard() {
     const rows = 3;
@@ -8,39 +8,45 @@ function Gameboard() {
     for (let i = 0; i < rows; i++) {
         board[i] = [];
         for (let j = 0; j < columns; j++) {
-            board[i].push(Cell());
+            board[i].push(Cell(i, j));
         }
     }
 
     const getBoard = () => board;
 
-    const dropToken = (column, player) => {
-        const availableCells = board.filter((row) => row[column].getValue() === 0).map(row => row[column]);
-        if (!availableCells.length) return;
-        const lowestRow = availableCells.length - 1;
-        board[lowestRow][column].addToken(player);
-    }
+    const setToken = ({ x, y }, token) => {
+        if (board[x][y].getValue() !== "-") return;
+
+        board[x][y].addToken(token);
+    };
 
     const printBoard = () => {
-        const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()));
-        return null;
-    }
+        const boardWithCellValues = board
+            .map((row) => row.map((cell) => cell.getValue()))
+            .join("\n");
+        console.log(boardWithCellValues);
+    };
 
-    return { getBoard, printBoard, dropToken }
+    return { getBoard, setToken, printBoard };
 }
 
-function Cell() {
-    let value = 0;
+function Cell(x, y) {
+    let value = "-";
 
-    const addToken = (player) => {
-        value = player;
+    const addToken = (token) => {
+        value = token;
     };
 
     const getValue = () => value;
 
+    const getCoordinates = () => {
+        return { x, y };
+    };
+
     return {
         addToken,
-        getValue
+        getValue,
+        getCoordinates,
     };
 }
 
@@ -53,12 +59,12 @@ function GameController(
     const players = [
         {
             name: playerOneName,
-            token: 1
+            token: "X",
         },
         {
             name: playerTwoName,
-            token: 2
-        }
+            token: "0",
+        },
     ];
 
     let activePlayer = players[0];
@@ -73,11 +79,13 @@ function GameController(
         console.log(`${getActivePlayer().name}'s turn.`);
     };
 
-    const playRound = (column) => {
+    const playRound = (coordinates) => {
         console.log(
-            `Dropping ${getActivePlayer().name}'s token into column ${column}...`
+            `${getActivePlayer().name} set the token by coordinates ${
+                coordinates.x
+            } and ${coordinates.y}`
         );
-        board.dropToken(column, getActivePlayer().token);
+        board.setToken(coordinates, getActivePlayer().token);
 
         switchPlayerTurn();
         printNewRound();
@@ -87,8 +95,22 @@ function GameController(
 
     return {
         playRound,
-        getActivePlayer
+        getActivePlayer,
     };
 }
 
-const game = GameController();
+function ScreenController() {}
+
+function clickHandlerBoard(evt) {}
+
+function runGame() {
+    const board = Gameboard();
+    const { playRound } = GameController();
+    while (true) {
+        const indexX = readlineSync.question("Choose the X coordinate!");
+        const indexY = readlineSync.question("Choose the Y coordinate!");
+        playRound({ x: Number(indexX) - 1, y: Number(indexY) - 1 });
+    }
+}
+
+runGame();
