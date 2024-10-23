@@ -65,7 +65,7 @@ function GameController(
     playerTwoName = "Player Two"
 ) {
     const board = Gameboard();
-
+    let countSteps = 0;
     const players = [
         {
             name: playerOneName,
@@ -112,27 +112,47 @@ function GameController(
             const currentBoardLineTokens = currentBoardLine
                 .map((cell) => cell.getValue())
                 .join("");
-            if (currentBoardLineTokens === ("XXX" || "000")) return true;
+            if (
+                currentBoardLineTokens === "XXX" ||
+                currentBoardLineTokens === "000"
+            )
+                return true;
         }
 
         return false;
     };
 
+    const isCorrectRound = (x, y) => {
+        const value = board.getBoard()[x][y].getValue();
+        return value === "X" || value === "0";
+    };
+
     const playRound = (coordinates) => {
-        console.log(
-            `${getActivePlayer().name} set the token by coordinates ${
-                coordinates.x
-            } and ${coordinates.y}`
-        );
-        board.setToken(coordinates, getActivePlayer().token);
-        if (!isVictory()) {
-            switchPlayerTurn();
-            printNewRound();
+        const { x, y } = coordinates;
+        if (!isCorrectRound(x, y)) {
+            console.log(
+                `${
+                    getActivePlayer().name
+                } set the token by coordinates ${x} and ${y}`
+            );
+            board.setToken(coordinates, getActivePlayer().token);
+            countSteps += 1;
         } else {
+            console.log(`Set the value to an empty cell!`);
+            return;
+        }
+        if (isVictory()) {
             console.log(`${getActivePlayer().name} is the winner!`);
             board.printBoard();
             return true;
         }
+        if (countSteps === 9) {
+            console.log(`It's a draw!`);
+            board.printBoard();
+            return true;
+        }
+        switchPlayerTurn();
+        printNewRound();
         return false;
     };
 
@@ -150,8 +170,8 @@ function clickHandlerBoard(evt) {}
 function runGame() {
     const { playRound } = GameController();
     while (true) {
-        const indexX = readlineSync.question("Choose the X coordinate!");
-        const indexY = readlineSync.question("Choose the Y coordinate!");
+        const indexX = readlineSync.question("Choose the X coordinate! ");
+        const indexY = readlineSync.question("Choose the Y coordinate! ");
         const isGameOver = playRound({ x: Number(indexX), y: Number(indexY) });
         if (isGameOver) {
             console.log("Game over!");
