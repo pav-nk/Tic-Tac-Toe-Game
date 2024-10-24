@@ -1,1 +1,0 @@
-{"version":3,"sources":["styles\\scss\\app.scss"],"names":[],"mappings":"AAEA;EACI","file":"app.38315c10.css","sourceRoot":"..\\src","sourcesContent":["\n\n*, *::after, *::before {\n    box-sizing: border-box;\n}\n\n\n"]}

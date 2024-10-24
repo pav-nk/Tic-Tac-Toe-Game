@@ -1,1 +1,0 @@
-{"version":3,"sources":["styles/style.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"style.251b6741.css","sourceRoot":"..\\src","sourcesContent":["/** CSS STYLE **/\r\n\r\n.hello {\r\n  display: block;\r\n\r\n  color: #fff;\r\n}\r\n"]}

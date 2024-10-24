@@ -1,7 +1,88 @@
-
-
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: Roboto;
+    src: url(../../assets/fonts/Roboto-Regular.ttf);
+}
 
+@font-face {
+    font-family: RobotoBold;
+    src: url(../../assets/fonts/Roboto-Bold.ttf);
+}
+
+html {
+    font-size: 10px;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: Roboto, system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    height: 100%;
+    margin: 0;
+}
+
+.main {
+    flex: 1 1 auto;
+}
+
+button {
+    display: block;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    width: 768px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.wrapper {
+    padding: 40px 0;
+}
+
+.navigation {
+    display: flex;
+    gap: 20px;
+}
+
+.footer {
+    padding: 20px 0;
+}
+
+.footer span,
+.footer .link {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.link--github::before {
+    content: "";
+    display: inline-block;
+    margin: 0 5px;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    background: url(../../assets/icons/github.svg) 100% / cover no-repeat;
+}
