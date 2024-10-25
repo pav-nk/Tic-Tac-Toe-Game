@@ -12,27 +12,46 @@
     <body>
         <header class="header">
             <div class="container">
-                <h1 class="title">Tick Tac Toe Game</h1>
+                <h1 class="title">
+                    Tick <span>Tac</span> Toe <span>Game</span>
+                </h1>
             </div>
         </header>
         <main class="main">
             <div class="container">
                 <div class="wrapper">
-                    <p class="description">Make your first move!</p>
-                    <div class="navigation">
-                        <button
-                            class="button button--start"
-                            type="button"
-                            data-btn="start"
-                        >
-                            -
+                    <p class="description">Make your move!</p>
+                    <div class="game-board" id="game-board">
+                        <button class="field" id="0"><span>X</span></button>
+                        <button class="field" id="1"><span>0</span></button>
+                        <button class="field not-border-right" id="2">
+                            <span></span>
+                        </button>
+                        <button class="field" id="3"><span></span></button>
+                        <button class="field" id="4"><span></span></button>
+                        <button class="field not-border-right" id="5">
+                            <span></span>
+                        </button>
+                        <button class="field not-border-bottom" id="6">
+                            <span></span>
+                        </button>
+                        <button class="field not-border-bottom" id="7">
+                            <span></span>
                         </button>
                         <button
-                            class="button button--reset"
-                            type="button"
-                            data-btn="reset"
+                            class="field not-border-bottom not-border-right"
+                            id="8"
                         >
-                            -
+                            <span></span>
+                        </button>
+                    </div>
+                    <div class="navigation">
+                        <button
+                            class="button button--restart"
+                            type="button"
+                            data-btn="restart"
+                        >
+                            Restart
                         </button>
                     </div>
                 </div>

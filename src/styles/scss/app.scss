@@ -1,3 +1,5 @@
+@import "reset", "mixins", "variables";
+
 *,
 *::after,
 *::before {
@@ -24,18 +26,15 @@ body {
     flex-direction: column;
     justify-content: space-between;
     font-family: Roboto, system-ui, -apple-system, sans-serif;
-    font-size: 1rem;
+    font-size: 1.8rem;
     line-height: 1.5;
     height: 100%;
-    margin: 0;
+    background-color: $base-color-2;
+    color: $text-color-1;
 }
 
 .main {
     flex: 1 1 auto;
-}
-
-button {
-    display: block;
 }
 
 img {
@@ -45,10 +44,23 @@ img {
 
 a {
     text-decoration: none;
+    color: $text-color-1;
+    font-family: RobotoBold;
 }
 
 li {
     list-style: none;
+}
+
+h1 {
+    font-size: 5rem;
+    font-family: RobotoBold;
+    padding: 1rem;
+    text-transform: uppercase;
+}
+
+h1 > span {
+    color: $base-color-3;
 }
 
 .container {
@@ -57,13 +69,82 @@ li {
     height: 100%;
 }
 
-.wrapper {
-    padding: 40px 0;
-}
-
 .navigation {
     display: flex;
     gap: 20px;
+    justify-content: center;
+}
+
+.header,
+.footer {
+    background-color: $base-color-1;
+    text-align: center;
+    box-shadow: $base-shadow;
+}
+
+.description {
+    text-align: center;
+    padding: 3rem;
+    letter-spacing: 0.1em;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(12rem, 18rem));
+    grid-template-rows: repeat(3, minmax(12rem, 18rem));
+    width: 100%;
+    padding: 1em 0 1em auto;
+    justify-content: center;
+}
+
+.button {
+    display: block;
+    padding: 1rem 5rem;
+    border: 3px solid $base-color-1;
+    background-color: $base-color-3;
+    color: $text-color-1;
+    font-family: RobotoBold;
+    cursor: pointer;
+    font-size: 2.5rem;
+    border-radius: 1rem;
+    margin: 2.5rem auto;
+    box-shadow: $base-shadow;
+    transition: opacity 0.3s ease-in-out;
+    text-transform: uppercase;
+    opacity: 1;
+    &:hover,
+    &:focus {
+        opacity: 0.7;
+    }
+}
+
+.field {
+    background-color: transparent;
+    font-family: RobotoBold;
+    font-size: 8rem;
+    color: $text-color-1;
+    border: none;
+    border-bottom: 5px solid $base-color-3;
+    border-right: 5px solid $base-color-3;
+    outline: none;
+    cursor: pointer;
+    & span {
+        display: block;
+        transition: opacity 0.3s ease-in-out;
+        opacity: 1;
+    }
+    & span:hover,
+    & span:focus {
+        opacity: 0.7;
+    }
+}
+
+.not-border-right {
+    border-right: 0;
+}
+
+.not-border-bottom {
+    border-bottom: 0;
 }
 
 .footer {
@@ -82,7 +163,7 @@ li {
     display: inline-block;
     margin: 0 5px;
     vertical-align: middle;
-    width: 24px;
-    height: 24px;
+    width: 3rem;
+    height: 3rem;
     background: url(../../assets/icons/github.svg) 100% / cover no-repeat;
 }
