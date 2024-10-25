@@ -20,29 +20,62 @@
         <main class="main">
             <div class="container">
                 <div class="wrapper">
-                    <p class="description">Make your move!</p>
+                    <div class="description-container">
+                        <p class="player-turn">
+                            Current turn:
+                            <span id="status-turn">Player One</span>
+                        </p>
+                        <p class="description" id="status-game">
+                            Make your move!
+                        </p>
+                    </div>
                     <div class="game-board" id="game-board">
-                        <button class="field" id="0"><span>X</span></button>
-                        <button class="field" id="1"><span>0</span></button>
-                        <button class="field not-border-right" id="2">
-                            <span></span>
+                        <button class="field" data-y="0" data-x="0">
+                            <span>-</span>
                         </button>
-                        <button class="field" id="3"><span></span></button>
-                        <button class="field" id="4"><span></span></button>
-                        <button class="field not-border-right" id="5">
-                            <span></span>
+                        <button class="field" data-y="0" data-x="1">
+                            <span>-</span>
                         </button>
-                        <button class="field not-border-bottom" id="6">
-                            <span></span>
+                        <button
+                            class="field not-border-right"
+                            data-y="0"
+                            data-x="2"
+                        >
+                            <span>-</span>
                         </button>
-                        <button class="field not-border-bottom" id="7">
-                            <span></span>
+                        <button class="field" data-y="1" data-x="0">
+                            <span>-</span>
+                        </button>
+                        <button class="field" data-y="1" data-x="1">
+                            <span>-</span>
+                        </button>
+                        <button
+                            class="field not-border-right"
+                            data-y="1"
+                            data-x="2"
+                        >
+                            <span>-</span>
+                        </button>
+                        <button
+                            class="field not-border-bottom"
+                            data-y="2"
+                            data-x="0"
+                        >
+                            <span>-</span>
+                        </button>
+                        <button
+                            class="field not-border-bottom"
+                            data-y="2"
+                            data-x="1"
+                        >
+                            <span>-</span>
                         </button>
                         <button
                             class="field not-border-bottom not-border-right"
-                            id="8"
+                            data-y="2"
+                            data-x="2"
                         >
-                            <span></span>
+                            <span>-</span>
                         </button>
                     </div>
                     <div class="navigation">

@@ -82,6 +82,13 @@ h1 > span {
     box-shadow: $base-shadow;
 }
 
+.description-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+}
+
 .description {
     text-align: center;
     padding: 3rem;

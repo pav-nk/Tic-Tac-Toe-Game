@@ -6,8 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Tick-Tac-Toe-Game</title>
 
-        <link rel="stylesheet" href="/app.38315c10.css">
-    <script src="/app.38315c10.js"></script></head>
+        <link rel="stylesheet" href="/index.a49189e7.css">
+    </head>
 
     <body>
         <header class="header">
@@ -20,26 +20,34 @@
         <main class="main">
             <div class="container">
                 <div class="wrapper">
-                    <p class="description">Make your move!</p>
+                    <p class="description" id="status-game">Make your move!</p>
                     <div class="game-board" id="game-board">
-                        <button class="field" id="0"><span>X</span></button>
-                        <button class="field" id="1"><span>0</span></button>
-                        <button class="field not-border-right" id="2">
-                            <span></span>
+                        <button class="field" data-y="0" data-x="0">
+                            <span>-</span>
                         </button>
-                        <button class="field" id="3"><span></span></button>
-                        <button class="field" id="4"><span></span></button>
-                        <button class="field not-border-right" id="5">
-                            <span></span>
+                        <button class="field" data-y="0" data-x="1">
+                            <span>-</span>
                         </button>
-                        <button class="field not-border-bottom" id="6">
-                            <span></span>
+                        <button class="field not-border-right" data-y="0" data-x="2">
+                            <span>-</span>
                         </button>
-                        <button class="field not-border-bottom" id="7">
-                            <span></span>
+                        <button class="field" data-y="1" data-x="0">
+                            <span>-</span>
                         </button>
-                        <button class="field not-border-bottom not-border-right" id="8">
-                            <span></span>
+                        <button class="field" data-y="1" data-x="1">
+                            <span>-</span>
+                        </button>
+                        <button class="field not-border-right" data-y="1" data-x="2">
+                            <span>-</span>
+                        </button>
+                        <button class="field not-border-bottom" data-y="2" data-x="0">
+                            <span>-</span>
+                        </button>
+                        <button class="field not-border-bottom" data-y="2" data-x="1">
+                            <span>-</span>
+                        </button>
+                        <button class="field not-border-bottom not-border-right" data-y="2" data-x="2">
+                            <span>-</span>
                         </button>
                     </div>
                     <div class="navigation">
@@ -55,6 +63,6 @@
                 <span>Copyright © 2024</span><a class="link link--github" href="https://github.com/pav-nk">pav_nk</a>
             </div>
         </footer>
-        <script src="/app.c328ef1a.js" type="module"></script>
+        <script src="/index.0641b553.js" defer=""></script>
     </body>
 </html>

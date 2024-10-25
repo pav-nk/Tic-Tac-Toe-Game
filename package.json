@@ -27,9 +27,11 @@
         "stylelint-scss": "^4.4.0",
         "vm-browserify": "^1.1.2"
     },
+    "scripts": {
+        "start": "parcel ./src/index.html",
+        "build": "parcel build index.html --public-url ./",
+        "lint": "npx stylelint ./src/styles/**/*.scss"
+    },
     "author": "Pavel Nikonorov",
-    "license": "ISC",
-    "dependencies": {
-        "readline-sync": "^1.4.10"
-    }
+    "license": "ISC"
 }

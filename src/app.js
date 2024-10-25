@@ -1,5 +1,3 @@
-import readlineSync from "readline-sync";
-
 function Gameboard() {
     const rows = 3;
     const columns = 3;
@@ -25,14 +23,7 @@ function Gameboard() {
         board[x][y].addToken(token);
     };
 
-    const printBoard = () => {
-        const boardWithCellValues = board
-            .map((row) => row.map((cell) => cell.getValue()))
-            .join("\n");
-        console.log(boardWithCellValues);
-    };
-
-    return { getBoard, setToken, printBoard };
+    return { getBoard, setToken };
 }
 
 function Cell(x, y, hashId) {
@@ -84,11 +75,6 @@ function GameController(
     };
     const getActivePlayer = () => activePlayer;
 
-    const printNewRound = () => {
-        board.printBoard();
-        console.log(`${getActivePlayer().name}'s turn.`);
-    };
-
     const isVictory = () => {
         const combs = [
             [0, 1, 2],
@@ -127,57 +113,81 @@ function GameController(
         return value === "X" || value === "0";
     };
 
-    const playRound = (coordinates) => {
+    const playRound = (coordinates, updateField) => {
         const { x, y } = coordinates;
         if (!isCorrectRound(x, y)) {
-            console.log(
+            updateStatusGame(
                 `${
                     getActivePlayer().name
                 } set the token by coordinates ${x} and ${y}`
             );
             board.setToken(coordinates, getActivePlayer().token);
+            updateField(x, y, getActivePlayer().token);
             countSteps += 1;
         } else {
-            console.log(`Set the value to an empty cell!`);
+            updateStatusGame("Set the value to an empty cell!");
             return;
         }
         if (isVictory()) {
-            console.log(`${getActivePlayer().name} is the winner!`);
-            board.printBoard();
+            updateStatusGame(`${getActivePlayer().name} is the winner!`);
             return true;
         }
         if (countSteps === 9) {
-            console.log(`It's a draw!`);
-            board.printBoard();
+            updateStatusGame(`It's a draw!`);
             return true;
         }
         switchPlayerTurn();
-        printNewRound();
+        updateTurnStatus(`${getActivePlayer().name}'s turn.`);
         return false;
     };
-
-    printNewRound();
 
     return {
         playRound,
     };
 }
 
-function ScreenController() {}
+function updateStatusGame(text = "") {
+    const statusGame = document.getElementById("status-game");
+    statusGame.innerHTML = text;
+}
 
-function clickHandlerBoard(evt) {}
+function updateTurnStatus(text = "") {
+    const statusTurn = document.getElementById("status-turn");
+    statusTurn.innerHTML = text;
+}
+
+function clickHandlerBoard(evt, playRound, updateField) {
+    const { currentTarget } = evt;
+    const { x, y } = currentTarget.dataset;
+    const isGameOver = playRound({ x: Number(x), y: Number(y) }, updateField);
+    if (isGameOver) {
+        updateStatusGame("Game over!");
+        return;
+    }
+}
+
+function ScreenController(playRound) {
+    const gameBoard = document.getElementById("game-board");
+    const fields = [...gameBoard.querySelectorAll(".field")];
+
+    const updateField = (x, y, token) => {
+        const currentField = fields.find(
+            (el) => el.dataset.x === x && el.dataset.y === y
+        );
+        const currentSpan = currentField.querySelector("span");
+        currentSpan.innerText = token;
+    };
+
+    fields.forEach((field) => {
+        field.addEventListener("click", (evt) =>
+            clickHandlerBoard(evt, playRound, updateField)
+        );
+    });
+}
 
 function runGame() {
     const { playRound } = GameController();
-    while (true) {
-        const indexX = readlineSync.question("Choose the X coordinate! ");
-        const indexY = readlineSync.question("Choose the Y coordinate! ");
-        const isGameOver = playRound({ x: Number(indexX), y: Number(indexY) });
-        if (isGameOver) {
-            console.log("Game over!");
-            return;
-        }
-    }
+    ScreenController(playRound);
 }
 
 runGame();
