@@ -29,9 +29,12 @@
     },
     "scripts": {
         "start": "parcel ./src/index.html",
-        "build": "parcel build index.html --public-url ./",
+        "build": "parcel build ./src/index.html --public-url ./",
         "lint": "npx stylelint ./src/styles/**/*.scss"
     },
     "author": "Pavel Nikonorov",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "punycode": "^2.3.1"
+    }
 }

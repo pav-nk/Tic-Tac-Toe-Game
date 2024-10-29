@@ -31,6 +31,7 @@ body {
     height: 100%;
     background-color: $base-color-2;
     color: $text-color-1;
+    letter-spacing: 0.1em;
 }
 
 .main {
@@ -85,14 +86,14 @@ h1 > span {
 .description-container {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
+    padding: 2rem 0;
+    flex-direction: column;
 }
 
 .description {
     text-align: center;
-    padding: 3rem;
-    letter-spacing: 0.1em;
 }
 
 .game-board {
@@ -112,7 +113,7 @@ h1 > span {
     color: $text-color-1;
     font-family: RobotoBold;
     cursor: pointer;
-    font-size: 2.5rem;
+    font-size: 2rem;
     border-radius: 1rem;
     margin: 2.5rem auto;
     box-shadow: $base-shadow;
@@ -155,7 +156,7 @@ h1 > span {
 }
 
 .footer {
-    padding: 20px 0;
+    padding: 1rem 0;
 }
 
 .footer span,

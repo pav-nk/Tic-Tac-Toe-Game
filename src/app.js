@@ -119,21 +119,23 @@ function GameController(
             updateStatusGame(
                 `${
                     getActivePlayer().name
-                } set the token by coordinates ${x} and ${y}`
+                } set the token by coordinates: x: ${x} and y: ${y}`
             );
             board.setToken(coordinates, getActivePlayer().token);
             updateField(x, y, getActivePlayer().token);
             countSteps += 1;
         } else {
             updateStatusGame("Set the value to an empty cell!");
-            return;
+            return false;
         }
         if (isVictory()) {
-            updateStatusGame(`${getActivePlayer().name} is the winner!`);
+            updateStatusGame(
+                `${getActivePlayer().name} is the winner! Game over!`
+            );
             return true;
         }
         if (countSteps === 9) {
-            updateStatusGame(`It's a draw!`);
+            updateStatusGame(`It's a draw! Game over!`);
             return true;
         }
         switchPlayerTurn();
@@ -156,32 +158,47 @@ function updateTurnStatus(text = "") {
     statusTurn.innerHTML = text;
 }
 
-function clickHandlerBoard(evt, playRound, updateField) {
-    const { currentTarget } = evt;
-    const { x, y } = currentTarget.dataset;
-    const isGameOver = playRound({ x: Number(x), y: Number(y) }, updateField);
-    if (isGameOver) {
-        updateStatusGame("Game over!");
-        return;
-    }
-}
-
 function ScreenController(playRound) {
     const gameBoard = document.getElementById("game-board");
+    const restartBtn = document.getElementById("restart-btn");
     const fields = [...gameBoard.querySelectorAll(".field")];
 
     const updateField = (x, y, token) => {
-        const currentField = fields.find(
-            (el) => el.dataset.x === x && el.dataset.y === y
-        );
+        const currentField = fields.find((el) => {
+            return Number(el.dataset.x) === x && Number(el.dataset.y) === y;
+        });
         const currentSpan = currentField.querySelector("span");
         currentSpan.innerText = token;
     };
 
-    fields.forEach((field) => {
-        field.addEventListener("click", (evt) =>
-            clickHandlerBoard(evt, playRound, updateField)
+    const clearCellValues = () => {
+        fields.forEach((field) => {
+            const span = field.querySelector("span");
+            span.innerText = "-";
+        });
+    };
+
+    const clickHandlerBoard = (evt) => {
+        const { currentTarget } = evt;
+        const { x, y } = currentTarget.dataset;
+        const isGameOver = playRound(
+            { x: Number(x), y: Number(y) },
+            updateField
         );
+        if (isGameOver) {
+            fields.forEach((field) => {
+                field.removeEventListener("click", clickHandlerBoard);
+            });
+        }
+    };
+
+    fields.forEach((field) => {
+        field.addEventListener("click", clickHandlerBoard);
+    });
+
+    restartBtn.addEventListener("click", () => {
+        runGame();
+        clearCellValues();
     });
 }
 
